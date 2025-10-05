@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 services:
   - type: web
     name: aeronav-server
@@ -15,3 +16,23 @@ services:
         sync: false
       - key: REVENUECAT_WEBHOOK_SECRET
         sync: false
+=======
+echo services: > render.yaml
+echo   - type: web >> render.yaml
+echo     name: aeronav-server >> render.yaml
+echo     env: node >> render.yaml
+echo     repo: https://github.com/romeo8580/AeroNav_Deploy >> render.yaml
+echo     plan: free >> render.yaml
+echo     rootDir: . >> render.yaml
+echo     buildCommand: cd server && npm install >> render.yaml
+echo     startCommand: node server/server.js >> render.yaml
+echo     envVars: >> render.yaml
+echo       - key: NODE_ENV >> render.yaml
+echo         value: production >> render.yaml
+echo       - key: PORT >> render.yaml
+echo         value: 4000 >> render.yaml
+echo       - key: REVENUECAT_API_KEY >> render.yaml
+echo         sync: false >> render.yaml
+echo       - key: REVENUECAT_WEBHOOK_SECRET >> render.yaml
+echo         sync: false >> render.yaml
+>>>>>>> f6640a6 (Add AeroNav config files)

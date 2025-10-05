@@ -1,0 +1,17 @@
+{
+  "cli": {
+    "version": ">= 3.25.0"
+  },
+  "build": {
+    "production": {
+      "ios": {
+        "workflow": "managed",
+        "scheme": "AeroNav",
+        "buildConfiguration": "Release"
+      },
+      "android": {
+        "workflow": "managed",
+        "buildType": "apk"
+      }
+    }
+  }

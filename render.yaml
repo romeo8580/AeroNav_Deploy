@@ -5,9 +5,9 @@ services:
     env: node
     plan: free
     region: oregon
-    buildCommand: |
-      cd frontend && npm install && npm run build
-      cd ../server && npm install
+     buildCommand: |
+  cd frontend && npm install && chmod +x node_modules/.bin/react-scripts && npm run build && cd ../server && npm install
+startCommand: cd server && npm start
     startCommand: node server/server.js
     autoDeploy: true
     envVars:

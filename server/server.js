@@ -6,16 +6,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve React frontend build
+// --- Define your API routes FIRST ---
+app.get("/api/ping", (req, res) => {
+  res.json({ message: "pong" });
+});
+
+// --- Serve React frontend ---
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
-});
-
-// Example API endpoint
-app.get("/api/ping", (req, res) => {
-  res.json({ message: "pong" });
 });
 
 const PORT = process.env.PORT || 10000;

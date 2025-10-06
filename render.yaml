@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿services:
+=======
+services:
+>>>>>>> badffc53 (Initial commit for AeroNav deploy)
   - type: web
     name: aeronav-server
     env: node
@@ -23,7 +27,7 @@
     env: node
     region: oregon
     plan: free
-    repo: https://github.com/romeo8580/AeroNav_Deploy
+    repo: github.com/romeo8580/AeroNav_Deploy
     rootDir: frontend
     buildCommand: npm install && npm run build
     startCommand: npx serve -s build -l 3000

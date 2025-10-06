@@ -1,39 +1,17 @@
 services:
-
   - type: web
-    name: aeronav-server
-    env: node
-    region: oregon
-    plan: free
-    repo: github.com/romeo8580/AeroNav_Deploy
-    rootDir: server          # backend folder
-    buildCommand: npm install
-    startCommand: node server.js
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: PORT
-        value: 4000
-      - key: REVENUECAT_API_KEY
-        sync: false
-      - key: REVENUECAT_WEBHOOK_SECRET
-        sync: false
-
-  - type: web
-   services:
-  - type: web
-    name: aeronav-server
+    name: aeronav
     env: node
     rootDir: server
-    buildCommand: "yarn"
-    startCommand: "yarn start"
+    buildCommand: |
+      cd ../frontend
+      npm install
+      npm run build
+      cd ../server
+      npm install
+    startCommand: node server.js
     envVars:
       - key: NODE_VERSION
         value: 22.16.0
-  - type: web
-    name: aeronav-frontend
-    env: static
-    rootDir: frontend
-    buildCommand: "yarn build"
-    staticPublishPath: "frontend/build"
-
+      - key: NODE_ENV
+        value: production

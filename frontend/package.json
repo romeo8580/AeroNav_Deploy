@@ -17,6 +17,21 @@
 =======
     "expo": "^48.0.18",
     "serve": "^14.2.0"
+<<<<<<< HEAD
 
+=======
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+>>>>>>> fb65511e (Fix Render deploy paths and update package.json)
   }
 }

@@ -1,13 +1,13 @@
-services:
+﻿services:
   - type: web
     name: aeronav-server
     env: node
     region: oregon
     plan: free
     repo: https://github.com/romeo8580/AeroNav_Deploy
-    rootDir: .
-    buildCommand: cd server && npm install
-    startCommand: cd server && node server.js
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node server.js
     envVars:
       - key: NODE_ENV
         value: production
@@ -18,3 +18,12 @@ services:
       - key: REVENUECAT_WEBHOOK_SECRET
         sync: false
 
+  - type: web
+    name: aeronav-frontend
+    env: node
+    region: oregon
+    plan: free
+    repo: https://github.com/romeo8580/AeroNav_Deploy
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npx serve -s build -l 3000

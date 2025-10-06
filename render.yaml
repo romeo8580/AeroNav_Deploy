@@ -20,13 +20,20 @@ services:
         sync: false
 
   - type: web
-    name: aeronav-frontend
+   services:
+  - type: web
+    name: aeronav-server
     env: node
-    region: oregon
-    plan: free
-    repo: github.com/romeo8580/AeroNav_Deploy
+    rootDir: server
+    buildCommand: "yarn"
+    startCommand: "yarn start"
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0
+  - type: web
+    name: aeronav-frontend
+    env: static
     rootDir: frontend
-    repo: https://github.com/romeo8580/AeroNav_Deploy
-    rootDir: frontend        # frontend folder
-    buildCommand: npm install && npm run build
-    startCommand: npx serve -s build -l 3000
+    buildCommand: "yarn build"
+    staticPublishPath: "frontend/build"
+

@@ -1,0 +1,6 @@
+﻿[
+  { "gate": "A1", "terminal": "T1", "floor": "1" },
+  { "gate": "B2", "terminal": "T2", "floor": "2" },
+  { "gate": "C3", "terminal": "T3", "floor": "3" },
+  { "gate": "D4", "terminal": "T1", "floor": "1" }
+]

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Define paths
+FRONTEND_SRC="./frontend/src"
+BACKEND_SERVER="./server"
+
+# Output zip files
+FRONTEND_ZIP="./AeroNav_frontend_src.zip"
+BACKEND_ZIP="./AeroNav_backend.zip"
+
+# Check frontend/src exists
+if [ -d "$FRONTEND_SRC" ]; then
+    echo "Zipping frontend/src..."
+    zip -r "$FRONTEND_ZIP" "$FRONTEND_SRC"
+    echo "Frontend zipped to $FRONTEND_ZIP"
+else
+    echo "Error: $FRONTEND_SRC folder not found!"
+fi
+
+# Check server exists
+if [ -d "$BACKEND_SERVER" ]; then
+    echo "Zipping backend/server..."
+    zip -r "$BACKEND_ZIP" "$BACKEND_SERVER"
+    echo "Backend zipped to $BACKEND_ZIP"
+else
+    echo "Error: $BACKEND_SERVER folder not found!"
+fi
+
+echo "All done!"

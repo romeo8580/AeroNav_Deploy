@@ -1,0 +1,5 @@
+﻿[
+  { "flightNumber": "AA101", "from": "JFK", "to": "LAX", "departure": "08:00", "arrival": "11:00", "status": "On Time" },
+  { "flightNumber": "DL202", "from": "ATL", "to": "ORD", "departure": "09:30", "arrival": "11:00", "status": "Delayed" },
+  { "flightNumber": "UA303", "from": "SFO", "to": "SEA", "departure": "10:15", "arrival": "12:00", "status": "On Time" }
+]

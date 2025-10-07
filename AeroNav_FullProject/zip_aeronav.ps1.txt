@@ -1,0 +1,29 @@
+# Paths
+$frontendSrc = ".\frontend\src"
+$backendServer = ".\server"
+
+# Output zip files
+$frontendZip = ".\AeroNav_frontend_src.zip"
+$backendZip = ".\AeroNav_backend.zip"
+
+# Zip frontend/src
+if (Test-Path $frontendSrc) {
+    Write-Host "Zipping frontend/src..."
+    if (Test-Path $frontendZip) { Remove-Item $frontendZip }
+    Compress-Archive -Path "$frontendSrc\*" -DestinationPath $frontendZip
+    Write-Host "Frontend zipped to $frontendZip"
+} else {
+    Write-Host "Error: $frontendSrc folder not found!"
+}
+
+# Zip backend/server
+if (Test-Path $backendServer) {
+    Write-Host "Zipping backend/server..."
+    if (Test-Path $backendZip) { Remove-Item $backendZip }
+    Compress-Archive -Path "$backendServer\*" -DestinationPath $backendZip
+    Write-Host "Backend zipped to $backendZip"
+} else {
+    Write-Host "Error: $backendServer folder not found!"
+}
+
+Write-Host "All done!"

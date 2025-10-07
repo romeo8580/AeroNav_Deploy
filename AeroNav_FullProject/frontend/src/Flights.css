@@ -1,0 +1,20 @@
+﻿.flights-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+.flights-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.flights-table th, .flights-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+.flights-table th {
+  background-color: #0070f3;
+  color: white;
+}
+.flights-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

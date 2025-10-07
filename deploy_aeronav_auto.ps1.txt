@@ -1,0 +1,58 @@
+# ===============================
+# AeroNav Auto Deploy Script
+# Frontend (Vercel) + Backend (Render)
+# ===============================
+
+# --- CONFIGURATION ---
+$backendUrl = "https://aeronav-deploy-27.onrender.com"
+$frontendPath = "C:\Users\romeo\Desktop\AeroNav_Deploy\frontend"
+$envFile = "$frontendPath\.env"
+$publishDir = "$frontendPath\build"
+
+Write-Host "🚀 Starting AeroNav Auto Deploy..." -ForegroundColor Cyan
+
+# --- STEP 1: Verify Backend is Live ---
+Write-Host "🔍 Checking if Render backend is live at $backendUrl ..."
+try {
+    $response = Invoke-WebRequest -Uri $backendUrl -UseBasicParsing -TimeoutSec 10
+    if ($response.StatusCode -eq 200) {
+        Write-Host "✅ Backend is live!" -ForegroundColor Green
+    } else {
+        Write-Host "⚠️ Backend responded with status code $($response.StatusCode). Deployment aborted." -ForegroundColor Yellow
+        exit
+    }
+}
+catch {
+    Write-Host "❌ Could not reach backend ($backendUrl). Make sure Render is running and try again." -ForegroundColor Red
+    exit
+}
+
+# --- STEP 2: Inject API URL into frontend .env ---
+Write-Host "📝 Updating frontend environment variables..."
+@"
+REACT_APP_API_URL=$backendUrl
+"@ | Set-Content $envFile -Encoding UTF8
+Write-Host "✅ .env updated with backend URL."
+
+# --- STEP 3: Build frontend ---
+Write-Host "🏗️ Building frontend..."
+Set-Location $frontendPath
+npm install
+npm run build
+
+if (Test-Path $publishDir) {
+    Write-Host "✅ Build complete. Ready for Vercel deployment!" -ForegroundColor Green
+} else {
+    Write-Host "❌ Build folder not found. Something went wrong during build." -ForegroundColor Red
+    exit
+}
+
+# --- STEP 4: Confirm for manual Vercel upload ---
+Write-Host "`n🪶 Next Step:"
+Write-Host "   → Go to https://vercel.com/dashboard"
+Write-Host "   → Create a new project or redeploy your existing one."
+Write-Host "   → Build Command: npm run build"
+Write-Host "   → Publish Directory: build"
+Write-Host "   → The app will now use the live backend ($backendUrl)." -ForegroundColor Cyan
+
+Write-Host "`n✅ All done!"

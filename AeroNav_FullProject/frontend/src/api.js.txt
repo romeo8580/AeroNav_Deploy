@@ -1,0 +1,35 @@
+// src/api.js
+const API_URL = process.env.REACT_APP_API_URL;
+
+export async function fetchFlights() {
+  try {
+    const res = await fetch(`${API_URL}/flights`);
+    if (!res.ok) throw new Error("Failed to fetch flights");
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching flights:", error);
+    return [];
+  }
+}
+
+export async function fetchTerminalMap() {
+  try {
+    const res = await fetch(`${API_URL}/terminal-map`);
+    if (!res.ok) throw new Error("Failed to fetch terminal map");
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching terminal map:", error);
+    return [];
+  }
+}
+
+export async function search(query) {
+  try {
+    const res = await fetch(`${API_URL}/search?q=${encodeURIComponent(query)}`);
+    if (!res.ok) throw new Error("Search failed");
+    return await res.json();
+  } catch (error) {
+    console.error("Error performing search:", error);
+    return [];
+  }
+}

@@ -1,21 +1,21 @@
-
 services:
   - type: web
-    name: AeroNav
+    name: aeronav-backend
     env: node
-    plan: free
-    region: oregon
-     buildCommand: |
-  cd frontend && npm install && chmod +x node_modules/.bin/react-scripts && npm run build && cd ../server && npm install
-startCommand: cd server && npm start
-    startCommand: node server/server.js
+    buildCommand: cd server && npm install
+    startCommand: cd server && node index.js
     autoDeploy: true
     envVars:
+      - key: NODE_ENV
+        value: production
       - key: PORT
-        value: "10000"
-      - key: SUPABASE_URL
-        value: "https://evkosdnxshkadhedlety.supabase.co"
-      - key: SUPABASE_ANON_KEY
-        value: "<prefer publishable key instead of anon key for mobile and desktop apps"
-      - key: REACT_APP_API_URL
-        value: "https://aeronav-deploy-10.onrender.com"
+        value: 5000
+
+  - type: static
+    name: aeronav-frontend
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
+    autoDeploy: true
+    envVars:
+      - key: REACT_APP_API_BASE_URL
+        sync: false
